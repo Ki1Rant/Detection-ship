@@ -1,0 +1,8 @@
+.vscode
+dataset_clean/
+dataset_dist/
+fold_dataset/
+outputs/
+__pycache__/
+venv/
+*.pt

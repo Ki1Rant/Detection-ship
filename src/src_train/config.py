@@ -10,11 +10,11 @@ class Config:
     PROJECT_ROOT = Path(__file__).parent.parent.parent
     FOLD_DATASET_DIR = PROJECT_ROOT / "fold_dataset"
     OUTPUT_DIR = PROJECT_ROOT / "outputs"
-    CHECKPOINTS_DIR = OUTPUT_DIR / "adv_checkpoints"
+    CHECKPOINTS_DIR = OUTPUT_DIR / "checkpoints"
 
     # --- Models ---
     MODEL_NAMES = ["yolo11m.pt", "yolov8m.pt"]
-    IMG_SIZE = 649
+    IMG_SIZE = 640
     NUM_CLASSES = 1
 
     # --- Loss ---

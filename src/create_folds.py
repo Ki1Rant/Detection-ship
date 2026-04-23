@@ -17,10 +17,10 @@ TEST_COUNT = 400
 NUM_FOLDS = 5
 TRAIN_RATIO = 0.8
 
-SRC_DIR = Path(__file__).resolve().parent.parent / "dataset_clean"
+SRC_DIR = Path(__file__).resolve().parent.parent / "dataset_clean_r"
 SRC_IMAGES = SRC_DIR / "images"
 SRC_LABELS = SRC_DIR / "labels"
-DEST_DIR = Path(__file__).resolve().parent.parent / "fold_dataset"
+DEST_DIR = Path(__file__).resolve().parent.parent / "fold_dataset_r"
 
 
 def get_image_names():

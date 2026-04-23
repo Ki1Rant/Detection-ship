@@ -1,19 +1,35 @@
+"""
+Интерактивная утилита для просмотра и ручной очистки датасета.
+GUI на Tkinter позволяет: просматривать изображения с разметкой, 
+удалять некорректные образцы, навигировать по датасету и отслеживать прогресс.
+"""
+
 import tkinter as tk
 from tkinter import ttk, filedialog, messagebox
 from PIL import Image, ImageTk
 import os
 import glob
 
+DATASET_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "dataset_finetune/first_data")
+
+DATASET_SPLITS = ["train", "valid", "test"]
+
+CLASS_NAMES = ["ship"]
+
+WINDOW_WIDTH = 900
+WINDOW_HEIGHT = 700
+
+
 
 class ImageViewer:
     def __init__(self, root):
         self.root = root
         self.root.title("Image Box Viewer")
-        self.root.geometry("900x700")
+        self.root.geometry(f"{WINDOW_WIDTH}x{WINDOW_HEIGHT}")
 
-        self.dataset_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "fold_dataset/distilled_data_renamed")
-        self.splits = ["train", "valid", "test"]
-        self.class_names = ["ship"]
+        self.dataset_path = DATASET_PATH
+        self.splits = DATASET_SPLITS
+        self.class_names = CLASS_NAMES
 
         self.current_split = None
         self.image_files = []
@@ -173,7 +189,7 @@ class ImageViewer:
         if not self.image_files:
             return
         self.status_lbl.config(
-            text=f"✓ Оставлено: {os.path.basename(self.image_files[self.current_index])}"
+            text=f" Оставлено: {os.path.basename(self.image_files[self.current_index])}"
         )
         self._next()
 

@@ -1,5 +1,8 @@
 """
-Скрипт обучения модели-Ученика на дистиллированном датасете.
+Скрипт обучения компактной модели-ученика YOLOv8n.
+Обучает легкую модель на дистиллированном датасете (псевдо-метки от ансамбля) + исходных данных
+с целью минимизации задержки инференса. Использует агрессивную аугментацию (включая erasing)
+для повышения робастности, валидирует только на Ground Truth разметке.
 """
 
 import gc
@@ -27,6 +30,7 @@ FLIP_LR = 0.5
 FLIP_UD = 0.0             
 SHEAR = 0.0                
 ERASING = 0.4             
+PERSPECTIVE = 0.0005
 
 HSV_H = 0.015              
 HSV_S = 0.7         
@@ -71,7 +75,7 @@ def train_student():
         device=DEVICE,
         workers=WORKERS,
         project=OUTPUT_DIR,
-        name="yolov8n_student",
+        name="adv_yolov8n_student",
         exist_ok=True,
         
         lr0=LR0,
@@ -86,7 +90,8 @@ def train_student():
         shear=SHEAR,
         mixup=0.0,        
         erasing=ERASING,  
-        
+        perspective=PERSPECTIVE,
+
         hsv_h=HSV_H,
         hsv_s=HSV_S,
         hsv_v=HSV_V,
@@ -100,7 +105,7 @@ def train_student():
     )
 
     print("Обучение Ученика завершено")
-    print(f" Лучшие веса сохранены в: {Path(OUTPUT_DIR) / 'yolov8n_student' / 'weights' / 'best.pt'}")
+    print(f" Лучшие веса сохранены в: {Path(OUTPUT_DIR) / 'adv_yolov8n_student' / 'weights' / 'best.pt'}")
 
     del model
     clean_memory()

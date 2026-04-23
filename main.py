@@ -1,6 +1,8 @@
 """
-Main entry point for the training pipeline.
-Iterates over models and cross-validation folds.
+Скрипт кросс-валидационного обучения ансамбля моделей.
+Обучает YOLOv8m и YOLO11m на каждом из 5 фолдов исходного датасета.
+Автоматически создает конфигурационные файлы data.yaml для каждого фолда,
+управляет гиперпараметрами через config.py, сохраняет контрольные точки и метрики.
 """
 
 import traceback

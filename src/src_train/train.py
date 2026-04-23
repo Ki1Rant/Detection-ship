@@ -61,7 +61,7 @@ def train_single_model(fold_idx, model_name, config):
         patience=config.EARLY_STOPPING_PATIENCE,
         val=True,
         project=str(config.OUTPUT_DIR),
-        name=f"adv_fold_{fold_idx}_{model_name.replace('.pt', '')}",
+        name=f"fold_{fold_idx}_{model_name.replace('.pt', '')}",
         exist_ok=True,
         verbose=True,
         plots=True,

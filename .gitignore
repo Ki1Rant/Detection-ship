@@ -1,6 +1,5 @@
 .vscode
-dataset_clean/
-dataset_dist/
+dataset_*/
 fold_dataset/
 outputs/
 __pycache__/
